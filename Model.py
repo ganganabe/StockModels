@@ -9,3 +9,4 @@ c = list(data[data.y <= -0.05].index)
 data.ix[a, 'y'] = 'A'
 data.ix[b, 'y'] = 'B'
 data.ix[c, 'y'] = 'C'
+print('A')
