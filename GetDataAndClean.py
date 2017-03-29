@@ -34,7 +34,7 @@ class GetDataAndClean(object):
                       'code': row_data_arr[:, 3]}
         data_all = pd.DataFrame(row_data_d, columns=['code', 'date', 'close', 'volume'])
         code_list = list(set(data_all['code']))
-        X_close = ["close_day" + str(i)  for i in range(1, self.date_interval_forward+1)]
+        X_close = ["close_day" + str(i) for i in range(1, self.date_interval_forward+1)]
         X_volume = ["volume_day" + str(i) for i in range(1, self.date_interval_forward+1)]
 
         data_close = pd.DataFrame([range(self.date_interval_forward)], columns=X_close).drop(0, axis=0)
