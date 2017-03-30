@@ -3,7 +3,6 @@
 import pandas as pd
 import numpy as np
 from sqlalchemy import create_engine
-import datetime
 
 class GetDataAndClean(object):
     def __init__(self, date_interval_forward, date_interval_backward):
@@ -37,7 +36,7 @@ class GetDataAndClean(object):
                 pd.Series(list(raw_data.ix[x-date_interval_forward:x-1, 'close']), index=X_close, name=date_code[x]))
             data_volume = data_volume.append(
                 pd.Series(list(raw_data.ix[x-date_interval_forward:x-1, 'volume']), index=X_volume, name=date_code[x]))
-            y_judge = (raw_data.ix[x+date_interval_backward, 'close']/raw_data.ix[x, 'close'])/raw_data.ix[x, 'close']
+            y_judge = (raw_data.ix[x+date_interval_backward, 'close']-raw_data.ix[x, 'close'])/raw_data.ix[x, 'close']
             data_y = data_y.append(pd.Series(y_judge, index=['y'], name=date_code[x]))
         data_matrix = pd.concat([data_close, data_volume, data_y], axis=1)
 #        print("Get the data_matrix")
